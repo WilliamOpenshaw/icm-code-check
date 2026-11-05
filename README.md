@@ -247,4 +247,6 @@ Open this folder in Claude Code and ask, for example, "Build the test for U3LA1.
 
 ## License
 
-The curriculum is by NYCDOE CS4All and licensed [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Classroom use is fine. If you share these tests, which are based on it, keep the attribution, keep them non-commercial, and use the same license.
+The code is under the [MIT License](LICENSE), so anyone may use, change, and share it.
+
+The curriculum is by NYCDOE CS4All and licensed [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), and that license requires anything based on it to use the same license. So the saved course pages in `curriculum/`, the questions in `src/lessons/`, and the built pages that include them stay under CC BY-NC-SA 4.0. Classroom use is fine. If you share them, keep the attribution, keep them non-commercial, and use the same license.
