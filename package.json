@@ -1,0 +1,14 @@
+{
+  "name": "icm-code-check",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Randomized, supervised comprehension tests for the ICM JS curriculum",
+  "scripts": {
+    "build": "node tools/build.js",
+    "test": "node --test \"tests/*.test.js\"",
+    "differences": "node tools/measure-differences.js",
+    "sample": "node tools/print-sample.js",
+    "samples": "node tools/write-samples.js",
+    "stress": "node tools/stress-patterns.js"
+  }
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICM Code Check</title>
+<script>
+// Applies the saved text size and color mode before anything draws, so nothing flashes.
+(function () {
+  var saved = {};
+  try {
+    saved = JSON.parse(localStorage.getItem('cc.display')) || {};
+  } catch (err) {
+    // Some sandboxes block storage. The defaults are fine.
+  }
+  var root = document.documentElement;
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', saved.theme || (prefersDark ? 'dark' : 'light'));
+  if (saved.scale) root.style.setProperty('--text-scale', saved.scale);
+})();
+</script>
+<style>
+/*STYLES*/
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript>This test needs JavaScript turned on.</noscript>
+<!--BEFORE_APP-->
+<script>
+/*SCRIPTS*/
+CodeCheck.startApp();
+</script>
+</body>
+</html>

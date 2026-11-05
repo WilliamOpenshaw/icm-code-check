@@ -1,0 +1,15 @@
+# Built by tools/build.js. The Pages workflow builds the site itself.
+site/
+tests/dist/
+
+# Answer keys for the teacher. Keep them off a public repo.
+docs/question-samples/
+
+# The teacher's own planning files
+*.pdf
+*.csv
+/U2LA1-3 Logical Operators AndOr.md
+/js-intro-to-computational-media-2.0.md
+
+.claude/settings.local.json
+node_modules/
