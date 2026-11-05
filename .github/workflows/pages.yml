@@ -28,6 +28,7 @@ jobs:
           node-version: 22
       - run: npm run build
       - run: npm test
+      - run: cp docs/demo.mp4 site/demo.mp4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -2,6 +2,10 @@
 
 Weekly supervised tests and practice for the [ICM JS curriculum](https://cs4all-icm.gitbook.io/js-intro-to-computational-media-2.0). Every student gets their own randomly generated version, and scores go to a Google Sheet you own.
 
+[![A student takes a test: tracing which lines of code run](docs/demo-poster.jpg)](https://williamopenshaw.github.io/icm-code-check/demo.mp4)
+
+▶ [Watch the 90-second demo](https://williamopenshaw.github.io/icm-code-check/demo.mp4): signing in with a start code, answering several kinds of questions, turning in, the results screen, practice with answers explained, and the text size and dark mode controls. Or [try the practice site](https://williamopenshaw.github.io/icm-code-check/).
+
 **Units 1 to 4 are built:** a test for each lesson, plus an end-of-unit test for each unit. Unit 5 is a personal project, so it has no test.
 
 | Test | Topic | Minutes | Questions |
@@ -71,6 +75,7 @@ Offline copy scores stay on that one device, so use it as a backup. For class, s
 | `test-offline.html` | The app as a single file, for backup or trying it out |
 | `apps-script/` | The two files you paste into Google Apps Script |
 | `docs/assessment-research.md` | The research, and suggested question types for each unit |
+| `docs/demo.mp4` | The demo video and its preview picture. `tools/demo/` records it again after changes |
 | `docs/question-samples/` | One example of every question for each test, with answers. Do not share these with students |
 | `curriculum/` | All 80 course pages, saved locally. Start at `curriculum/INDEX.md` |
 | `src/`, `tools/`, `tests/` | The source code, build tools, and automated tests |

@@ -52,6 +52,7 @@ There are no dependencies. Only Node is needed.
 - `apps-script/`, `test-offline.html`: build output. Never edit these directly
 - `site/index.html`: build output, the practice-only page (`CC.practiceOnly`). `.github/workflows/pages.yml` builds, tests, and publishes it to GitHub Pages on each push to `main`
 - The repo is public at github.com/WilliamOpenshaw/icm-code-check. `.gitignore` keeps the answer-key samples and the teacher's planning files off it. Commit or push only when the teacher asks
+- **Demo video:** `npm run build`, then `node tools/demo/record-demo.js` drives the Sheet simulator in headless Chrome over the DevTools Protocol (`tools/demo/cdp.js`, no npm packages) and saves `test-output/demo.mp4`. `overlay.js` adds the cursor, captions, and title cards, and knows each question's answer. Re-encode it and refresh the poster: `ffmpeg -i test-output/demo.mp4 -vf "setpts=PTS/1.15,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 26 -tune stillimage -movflags +faststart -an docs/demo.mp4` and `ffmpeg -ss 34 -i docs/demo.mp4 -frames:v 1 -q:v 3 docs/demo-poster.jpg`. Check frames before publishing. The Pages workflow copies the video to the practice site, which the README links to. Re-record after visible UI changes
 - `curriculum/`: saved course pages (`INDEX.md` lists them)
 - `tests/gas-mock.js`: stand-in for Google services; `tests/browser-student.js` answers a whole test through the real controls
 
