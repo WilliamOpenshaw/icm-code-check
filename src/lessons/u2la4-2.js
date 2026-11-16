@@ -516,7 +516,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             chainLines([{ cond: circleCall(c), body: log(m2) }], log(m3), '  '),
             ['}'],
           ), 'p5 calls mousePressed() once when the button goes down, and draw() still runs on the frame too.', {
-            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}, and this is the only frame that has run. Tap every highlighted line that runs.`,
+            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}, and this is the only frame that has run. Tap each line with a box that runs. Leave the lines that are skipped.`,
             vec: CLICK_NOW(spot.x, spot.y),
             kind: 'sketch',
           });
@@ -532,7 +532,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             chainLines([{ cond: `${rectCall(b)} && mouseIsPressed`, body: log(m1) }], log(m2), '  '),
             [`  ${log(m3)}`, '}'],
           ), 'Both have to be true for the first message. The last line is outside the if and else, so it always runs.', {
-            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}. Tap every highlighted line that runs on this frame.`,
+            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
             vec: CLICK_NOW(spot.x, spot.y),
             kind: 'sketch',
           });
@@ -548,7 +548,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             ifBlock(rectCall(b), log(m2)).map((l) => `  ${l}`),
             [`  ${log(m3)}`, '}'],
           ), 'Without a click, p5 never calls mousePressed(), so only draw() runs.', {
-            prompt: `The mouse is hovering at mouseX = ${spot.x}, mouseY = ${spot.y}, but the button is not pressed. Tap every highlighted line that runs on this frame.`,
+            prompt: `The mouse is hovering at mouseX = ${spot.x}, mouseY = ${spot.y}, but the button is not pressed. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
             vec: { mouseX: 0, mouseY: 0, frames: [{ mouseX: spot.x, mouseY: spot.y }] },
             kind: 'sketch',
             minHits: 1,

@@ -2665,14 +2665,14 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
     .map((line, i) => (/console\.log|^\s*return\b|^\s*[\w.]+ (=|\+=|-=) /.test(line) && !line.trim().startsWith('let') ? i : -1))
     .filter((i) => i >= 0);
 
-  // Keeps trying until some highlighted lines run and some do not.
+  // Keeps trying until some lines with a box run and some do not.
   kit.buildFlow = (r, makeCode, explain, options) => {
     const opts = options || {};
     for (let tries = 0; tries < 400; tries++) {
       const code = makeCode();
       const selectable = kit.actionLines(code);
       const q = kit.linesQuestion({
-        prompt: opts.prompt || 'Tap every highlighted line that runs.',
+        prompt: opts.prompt || 'Tap each line with a box that runs. Leave the lines that are skipped.',
         code,
         selectable,
         explain,
@@ -12176,7 +12176,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             chainLines([{ cond: circleCall(c), body: log(m2) }], log(m3), '  '),
             ['}'],
           ), 'p5 calls mousePressed() once when the button goes down, and draw() still runs on the frame too.', {
-            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}, and this is the only frame that has run. Tap every highlighted line that runs.`,
+            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}, and this is the only frame that has run. Tap each line with a box that runs. Leave the lines that are skipped.`,
             vec: CLICK_NOW(spot.x, spot.y),
             kind: 'sketch',
           });
@@ -12192,7 +12192,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             chainLines([{ cond: `${rectCall(b)} && mouseIsPressed`, body: log(m1) }], log(m2), '  '),
             [`  ${log(m3)}`, '}'],
           ), 'Both have to be true for the first message. The last line is outside the if and else, so it always runs.', {
-            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}. Tap every highlighted line that runs on this frame.`,
+            prompt: `The mouse is pressed at mouseX = ${spot.x}, mouseY = ${spot.y}. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
             vec: CLICK_NOW(spot.x, spot.y),
             kind: 'sketch',
           });
@@ -12208,7 +12208,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             ifBlock(rectCall(b), log(m2)).map((l) => `  ${l}`),
             [`  ${log(m3)}`, '}'],
           ), 'Without a click, p5 never calls mousePressed(), so only draw() runs.', {
-            prompt: `The mouse is hovering at mouseX = ${spot.x}, mouseY = ${spot.y}, but the button is not pressed. Tap every highlighted line that runs on this frame.`,
+            prompt: `The mouse is hovering at mouseX = ${spot.x}, mouseY = ${spot.y}, but the button is not pressed. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
             vec: { mouseX: 0, mouseY: 0, frames: [{ mouseX: spot.x, mouseY: spot.y }] },
             kind: 'sketch',
             minHits: 1,
@@ -13008,7 +13008,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           const pressed = r.pick([a, b, other]);
           return kit.buildFlow(r, () => ['function draw(){', '  if(keyIsPressed){', `    if(key == ${q(a)}){`, `      ${log(m1)}`, '    }', `    else if(key == ${q(b)}){`, `      ${log(m2)}`, '    }', `    ${log(m3)}`, '  }', `  ${log('Done')}`, '}'],
             'The inner chain picks at most one branch. The line after it is still inside the outer if.', {
-              prompt: `The ${pressed} key is being held down. Tap every highlighted line that runs on this frame.`,
+              prompt: `The ${pressed} key is being held down. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
               vec: { frames: [down(pressed)] },
               kind: 'sketch',
             });
@@ -13021,7 +13021,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           const [m1, m2, m3] = kit.pickScene(r).outcomes;
           return kit.buildFlow(r, () => ['function draw(){', '  if(keyIsPressed){', `    if(key == ${q(a)}){`, `      ${log(m1)}`, '    }', `    ${log(m2)}`, '  }', '  else{', `    ${log(m3)}`, '  }', '}'],
             'Nothing inside the outer if runs when no key is down, so only the outer else runs.', {
-              prompt: `The ${a} key was pressed a moment ago, and it has been let go. Tap every highlighted line that runs on this frame.`,
+              prompt: `The ${a} key was pressed a moment ago, and it has been let go. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
               vec: { key: a, frames: [{}] },
               kind: 'sketch',
               minHits: 1,
@@ -13036,7 +13036,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           const pressed = r.pick([a, b]);
           return kit.buildFlow(r, () => ['function draw(){', `  if(keyIsPressed && key == ${q(a)}){`, `    ${log(m1)}`, '  }', `  if(keyIsPressed && key == ${q(b)}){`, `    ${log(m2)}`, '  }', '  else{', `    ${log(m3)}`, '  }', '}'],
             'These are two separate ifs. The else belongs only to the second one.', {
-              prompt: `The ${pressed} key is being held down. Tap every highlighted line that runs on this frame.`,
+              prompt: `The ${pressed} key is being held down. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
               vec: { frames: [down(pressed)] },
               kind: 'sketch',
               minHits: 1,
@@ -16718,7 +16718,8 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             h('li', {}, 'Practice until you can explain why an answer is right. Practice gives you new questions each time.'),
             h('li', {}, 'On a test, check that the lesson and your name at the top of the screen are right.'),
             h('li', {}, 'Questions come in a mixed order, and your test is different from your neighbors\' tests. If a question is slowing you down, mark it for review and move on.'),
-            h('li', {}, 'After a test, practice the concepts it says to review. If you have a retake, your higher score counts.'))),
+            h('li', {}, 'After a test, practice the concepts it says to review. In Practice, "What to practice" lets you work on one kind of question at a time.'),
+            h('li', {}, 'A test is a check, not a final verdict. If you have a retake, it is a new version, and your higher score counts.'))),
         offline && !practiceOnly ? h('button', { type: 'button', class: 'btn btn-quiet teacher-link', onclick: showTeacherGate }, 'Teacher settings') : null),
     );
   }
@@ -16870,7 +16871,8 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           h('li', {}, 'Questions come in a mixed order. If one is slowing you down, mark it for review and move on.'),
           h('li', {}, 'No notes, no other tabs, and no AI. Leaving this screen gets recorded.'),
           h('li', {}, 'Your answers save as you go. You can go back and change them until time runs out.'),
-          h('li', {}, 'When time runs out, the test turns itself in.'))),
+          h('li', {}, 'When time runs out, the test turns itself in.'),
+          h('li', {}, 'If your teacher gives you a retake, it will be a new version, and your higher score counts.'))),
       errorBox,
       startButton),
     );
@@ -17228,7 +17230,8 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
   }));
 
   const missedList = (score) => (score.missed.length
-    ? h('div', { class: 'missed' }, h('h2', {}, 'Worth reviewing'), h('ul', {}, score.missed.map((m) => h('li', {}, m))))
+    ? h('div', { class: 'missed' }, h('h2', {}, 'Worth reviewing'), h('ul', {}, score.missed.map((m) => h('li', {}, m))),
+      h('p', { class: 'field-help' }, 'To work on just one of these, choose Practice, then pick it under "What to practice".'))
     : h('p', { class: 'all-right' }, 'You got full credit on everything.'));
 
   function showTestResults(finished, score, reply, timedOut) {

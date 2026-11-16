@@ -442,14 +442,14 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
     .map((line, i) => (/console\.log|^\s*return\b|^\s*[\w.]+ (=|\+=|-=) /.test(line) && !line.trim().startsWith('let') ? i : -1))
     .filter((i) => i >= 0);
 
-  // Keeps trying until some highlighted lines run and some do not.
+  // Keeps trying until some lines with a box run and some do not.
   kit.buildFlow = (r, makeCode, explain, options) => {
     const opts = options || {};
     for (let tries = 0; tries < 400; tries++) {
       const code = makeCode();
       const selectable = kit.actionLines(code);
       const q = kit.linesQuestion({
-        prompt: opts.prompt || 'Tap every highlighted line that runs.',
+        prompt: opts.prompt || 'Tap each line with a box that runs. Leave the lines that are skipped.',
         code,
         selectable,
         explain,

@@ -359,7 +359,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           const pressed = r.pick([a, b, other]);
           return kit.buildFlow(r, () => ['function draw(){', '  if(keyIsPressed){', `    if(key == ${q(a)}){`, `      ${log(m1)}`, '    }', `    else if(key == ${q(b)}){`, `      ${log(m2)}`, '    }', `    ${log(m3)}`, '  }', `  ${log('Done')}`, '}'],
             'The inner chain picks at most one branch. The line after it is still inside the outer if.', {
-              prompt: `The ${pressed} key is being held down. Tap every highlighted line that runs on this frame.`,
+              prompt: `The ${pressed} key is being held down. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
               vec: { frames: [down(pressed)] },
               kind: 'sketch',
             });
@@ -372,7 +372,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           const [m1, m2, m3] = kit.pickScene(r).outcomes;
           return kit.buildFlow(r, () => ['function draw(){', '  if(keyIsPressed){', `    if(key == ${q(a)}){`, `      ${log(m1)}`, '    }', `    ${log(m2)}`, '  }', '  else{', `    ${log(m3)}`, '  }', '}'],
             'Nothing inside the outer if runs when no key is down, so only the outer else runs.', {
-              prompt: `The ${a} key was pressed a moment ago, and it has been let go. Tap every highlighted line that runs on this frame.`,
+              prompt: `The ${a} key was pressed a moment ago, and it has been let go. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
               vec: { key: a, frames: [{}] },
               kind: 'sketch',
               minHits: 1,
@@ -387,7 +387,7 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           const pressed = r.pick([a, b]);
           return kit.buildFlow(r, () => ['function draw(){', `  if(keyIsPressed && key == ${q(a)}){`, `    ${log(m1)}`, '  }', `  if(keyIsPressed && key == ${q(b)}){`, `    ${log(m2)}`, '  }', '  else{', `    ${log(m3)}`, '  }', '}'],
             'These are two separate ifs. The else belongs only to the second one.', {
-              prompt: `The ${pressed} key is being held down. Tap every highlighted line that runs on this frame.`,
+              prompt: `The ${pressed} key is being held down. Tap each line with a box that runs on this frame. Leave the lines that are skipped.`,
               vec: { frames: [down(pressed)] },
               kind: 'sketch',
               minHits: 1,

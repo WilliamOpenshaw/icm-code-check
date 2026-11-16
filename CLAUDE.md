@@ -90,6 +90,7 @@ There are no dependencies. Only Node is needed.
 
 ## Limits to stay honest about
 
-- On 2026-11-01 one full test ran on Google's real servers from the teacher's own account, and the score reached all the tabs, including the `QUERY` reports. The teacher confirmed the link opens in a private window signed in only as a test student, and that account can't open the Restricted Sheet. A full test from a student-only login and a whole class at once are untested. Say so if that's still true.
+- On 2026-11-01 one full test ran on Google's real servers from the teacher's own account, and the score reached all the tabs, including the `QUERY` reports. The teacher confirmed the link opens in a private window signed in only as a test student, and that account can't open the Restricted Sheet. On 2026-11-03 a class of about 15 took U2LA1.3 at once on Google and retook it on 2026-11-10, and all 33 results saved. Larger classes, several classes at once, and time limits for other tests are untested. Say so if that's still true.
+- What that class showed: code flow was the weakest skill (53%, against 80% for writing code). Students most often missed "lines that run" questions, traces through a function call, and `||` regions on the canvas. Those questions are valid, so don't make them easier without the teacher asking.
 - The mock models values, not formatting, `QUERY` formulas, locks, quotas, or Google's removal of comments from pages.
 - Grading happens in the student's browser, so a determined student could fake a score. Supervision is the safeguard.

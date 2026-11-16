@@ -112,7 +112,7 @@ Use your **school** Google account, not a personal one. This Sheet will hold stu
 10. In the **Tests** tab, tick **Open** for this week's test.
 11. Open the link and try a practice question and a full test yourself. Then delete your test rows from **Attempts** and **Results**.
 
-> **Mostly proven on Google.** On 2026-11-01, one full test ran on Google's real servers, and its score reached Attempts, Results, Gradebook, and Class Summary. The link also opened in a private window signed in only as a test student, and that account can't open the Restricted Sheet. A whole class at once has not been tried yet, so start with a low-stakes run. If anything fails, tell Claude what you see.
+> **Proven with one class on Google.** On 2026-11-03, a class of about 15 took U2LA1.3 at the same time, and retook it a week later. All 33 results saved. A larger class, or several classes at once, has not been tried. If anything fails, tell Claude what you see.
 
 ### When the code changes
 
@@ -200,9 +200,9 @@ Each test mixes three skills, and the Sheet reports each one separately:
 
 **Scoring:** each question is worth 1 point. One small mistake earns ½ point, and two or more earn none. Canvas questions with fewer than 6 parts are all or nothing, so tapping everything can't earn points.
 
-**Tips for students:** the home page has short reminders about using AI for their work but not on tests, practicing, mixed question order, checking the lesson name, and retakes. To change them, ask Claude, or edit `showHome` in `src/app.js` and rebuild.
+**Tips for students:** the home page has short reminders about using AI for their work but not on tests, practicing, mixed question order, checking the lesson name, practicing one kind of question, and retakes. To change them, ask Claude, or edit `showHome` in `src/app.js` and rebuild.
 
-**After the test:** students see their name, the lesson's name, their score, points by skill, and which concepts to review, but not the answers.
+**After the test:** students see their name, the lesson's name, their score, points by skill, and which concepts to review, but not the answers. A note tells them how to practice just those concepts.
 
 **Practice:** students can take a full test or focus on one kind of question, and see answers as they go or at the end with the real timer. Practice questions come from the same generators, so students can never see their real test ahead of time. Nothing from practice is recorded.
 
@@ -233,7 +233,7 @@ Each browser remembers its own choice. On a shared device, the next student may 
 - **A determined student could cheat through the browser's developer tools.** Answers are worked out inside the page, so a student could dig them out or send a fake score. Watching screens makes this easy to catch. If your school manages the devices, ask IT whether developer tools can be turned off for students.
 - **Students pick their own names.** The start code and your supervision are what stop someone from testing under another name.
 - **Answers don't move between devices.** If a device dies mid-test, the student can reopen on another device and get the same test and time left, but must redo their answers. On the same device, reloading keeps them.
-- **The timing hasn't been tried with real students.** The minutes for each test are estimates. Try them with a few students first, then adjust. Questions that trace code across frames may take longer than they look.
+- **The timing has been tried on one test only.** On U2LA1.3, half of the students finished within 11 of the 20 minutes, and they said the time felt right. The minutes for the other tests are still estimates. Questions that trace code across frames may take longer than they look.
 
 ## Troubleshooting
 

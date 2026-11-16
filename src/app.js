@@ -92,7 +92,8 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
             h('li', {}, 'Practice until you can explain why an answer is right. Practice gives you new questions each time.'),
             h('li', {}, 'On a test, check that the lesson and your name at the top of the screen are right.'),
             h('li', {}, 'Questions come in a mixed order, and your test is different from your neighbors\' tests. If a question is slowing you down, mark it for review and move on.'),
-            h('li', {}, 'After a test, practice the concepts it says to review. If you have a retake, your higher score counts.'))),
+            h('li', {}, 'After a test, practice the concepts it says to review. In Practice, "What to practice" lets you work on one kind of question at a time.'),
+            h('li', {}, 'A test is a check, not a final verdict. If you have a retake, it is a new version, and your higher score counts.'))),
         offline && !practiceOnly ? h('button', { type: 'button', class: 'btn btn-quiet teacher-link', onclick: showTeacherGate }, 'Teacher settings') : null),
     );
   }
@@ -244,7 +245,8 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
           h('li', {}, 'Questions come in a mixed order. If one is slowing you down, mark it for review and move on.'),
           h('li', {}, 'No notes, no other tabs, and no AI. Leaving this screen gets recorded.'),
           h('li', {}, 'Your answers save as you go. You can go back and change them until time runs out.'),
-          h('li', {}, 'When time runs out, the test turns itself in.'))),
+          h('li', {}, 'When time runs out, the test turns itself in.'),
+          h('li', {}, 'If your teacher gives you a retake, it will be a new version, and your higher score counts.'))),
       errorBox,
       startButton),
     );
@@ -602,7 +604,8 @@ var CodeCheck = typeof CodeCheck !== 'undefined' ? CodeCheck : {};
   }));
 
   const missedList = (score) => (score.missed.length
-    ? h('div', { class: 'missed' }, h('h2', {}, 'Worth reviewing'), h('ul', {}, score.missed.map((m) => h('li', {}, m))))
+    ? h('div', { class: 'missed' }, h('h2', {}, 'Worth reviewing'), h('ul', {}, score.missed.map((m) => h('li', {}, m))),
+      h('p', { class: 'field-help' }, 'To work on just one of these, choose Practice, then pick it under "What to practice".'))
     : h('p', { class: 'all-right' }, 'You got full credit on everything.'));
 
   function showTestResults(finished, score, reply, timedOut) {
